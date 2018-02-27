@@ -15,38 +15,68 @@ function initialize() {
   }, true);
 }
 
-function createHTMLLink(url,title){
-  let st='<a href=\"'+url+'\">'+title+'</a>';
-  return st;
+function createHTMLLink(url,titleObject){
+  console.dir(titleObject);
+  let st='<a href=\"'+url+'\">'+titleObject.title+'</a>';
+  if (titleObject.additionalText!=undefined){
+    st=st+' '+titleObject.additionalText;
+  }
+   console.log(st);
+    return st;
+
 }
 
 function getLinkTitleFromTag(tab){
   let title=tab.title;
-  
+  let additionalText;
   //remove ' | SC 3.0' from sc tickets
   const scEnd=' | SC 3.0'
   if (title.endsWith(scEnd)){
     title=title.replace(scEnd);
   }
+  //handle dx documentation
+  if (tab.url.startsWith('https://documentation.devexpress.com')){
+   let lastTitle=title.split(' | ')[0];
+
+     //fit documentation links to members
+     let memberTypes=['property', 'method', 'event', 'interface', 'class']
+     let splittedTitle=lastTitle.split(' ');
+     let memberType=splittedTitle[1].toLowerCase();
+     
+
+     if (memberType!=undefined && memberTypes.includes(memberType)){
+      console.log('member');
+      additionalText=memberType;
+      title=splittedTitle[0];
+    }
+    else{
+      title=lastTitle;
+    }
+  }
+  let titleResult={
+    title, additionalText
+  }
+  return titleResult;
 
 
-  return title;
 }
 
 function createHTMLOnClick(info, tab) {
 
   let url=tab.url;
   let title=tab.title;
-  let linkTitle=info.selectionText;
+  let titleObject;
 
-  if (linkTitle==null){
-    linkTitle=getLinkTitleFromTag(tab);
+  if (info.selectionText==null){
+    titleObject=getLinkTitleFromTag(tab);
+  }else{
+    titleObject={title:info.selectionText};
   }
-  let link=createHTMLLink(url,linkTitle);
+  let link=createHTMLLink(url,titleObject);
   copyToClipboard(link);
   
-  
-  console.log('url '+url + ' selectionText -' +linkTitle+' title - '+title );
+  console.dir(titleObject);
+  //console.log('url '+url + ' selectionText -' +linkTitle+' title - '+title );
   //console.log("item " + info.menuItemId + " was clicked");
   //console.log("info: " + JSON.stringify(info));
   //console.log("tab: " + JSON.stringify(tab));

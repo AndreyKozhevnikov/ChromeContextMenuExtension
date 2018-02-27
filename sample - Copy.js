@@ -3,6 +3,14 @@
 // found in the LICENSE file.
 
 // A generic onclick callback function.
+
+     console.log(test);
+ console.log(memberName);
+  console.log(memberName!=undefined);
+  console.log(memberNames.includes(memberName.toLowerCase()));
+
+
+
 function genericOnClick(info, tab) {
   console.log("item " + info.menuItemId + " was clicked");
   console.log("info: " + JSON.stringify(info));
