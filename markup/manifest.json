@@ -6,5 +6,8 @@
   "background": {
     "scripts": ["sample.js"]
   },
+   "icons": {
+   "16": "markup.png"
+   },
   "manifest_version": 2
 }
