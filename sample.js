@@ -31,9 +31,11 @@ function getLinkTitleFromTag(tab){
   let title=tab.title;
   let additionalText;
   //remove ' | SC 3.0' from sc tickets
-  const scEnd=' | SC 3.0'
-  if (title.endsWith(scEnd)){
-    title=title.replace(scEnd);
+  let unwantedEnds=[' | SC 3.0', ' | DevExpress Support Center'];
+  for (let unwantedEnd of unwantedEnds){
+    if (title.endsWith(unwantedEnd)){
+      title=title.replace(unwantedEnd,'');
+    }
   }
   //handle dx documentation
   if (tab.url.startsWith('https://documentation.devexpress.com')){
@@ -120,7 +122,7 @@ function copyToClipboard(text) {
 }
 
 function createItems(){
-  chrome.contextMenus.create({"id":'htmlItem',"title": 'HTML1', "contexts":['all'], "onclick": createLinkOnClick});
+  chrome.contextMenus.create({"id":'htmlItem',"title": 'HTML', "contexts":['all'], "onclick": createLinkOnClick});
   chrome.contextMenus.create({'id':'markDownItem',"title": 'Markdown', "contexts":['all'], "onclick": createLinkOnClick});
   chrome.contextMenus.create({"title": 'Open in SC', "contexts":['all'],    "onclick": openTicketInSC});
 }
