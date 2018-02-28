@@ -1,6 +1,6 @@
 {
-  "name": "Context Menus Sample",
-  "description": "Shows some of the features of the Context Menus API",
+  "name": "Context Menu",
+  "description": "Provide context menu",
   "version": "0.6",
   "permissions": ["contextMenus"],
   "background": {

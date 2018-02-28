@@ -1,15 +1,9 @@
-// Copyright (c) 2010 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
-// A generic onclick callback function.
 function initialize() {
   document.addEventListener('copy', (ev) => {
     ev.preventDefault();
-
     const proxy = chrome.extension.getBackgroundPage().document.getElementById('clipboard_object')
     var text = proxy.value;
-    console.log(text);
+    //console.log(text);
     ev.clipboardData.setData("text/plain", text);
     ev.clipboardData.setData("text/html", text);
   }, true);
@@ -21,7 +15,6 @@ function createHTMLLink(url,titleObject){
   if (titleObject.additionalText!=undefined){
     st=st+' '+titleObject.additionalText;
   }
-  //console.log(st);
   return st;
 }
 
@@ -64,8 +57,6 @@ function getLinkTitleFromTag(tab){
     title, additionalText
   }
   return titleResult;
-
-
 }
 
 function createLinkOnClick(info, tab) {
@@ -88,15 +79,33 @@ function createLinkOnClick(info, tab) {
     link=createMarkDownLink(url,titleObject);
     break;
   }
-  
   copyToClipboard(link);
-  
-  console.dir(info);
-  //console.log('url '+url + ' selectionText -' +linkTitle+' title - '+title );
-  //console.log("item " + info.menuItemId + " was clicked");
-  //console.log("info: " + JSON.stringify(info));
-  //console.log("tab: " + JSON.stringify(tab));
 }
+
+function findTicketNoInText(textToSearch){
+  let regex=/[TESQ]\d{4,6}/g;
+  let results=regex.exec(textToSearch);
+  console.dir(textToSearch);
+  console.dir(results);
+  if (results!=null)
+    return results[0];
+}
+
+function openTicketInSC(info,tab){
+  let scTemplate = 'https://isc.devexpress.com/Thread/WorkplaceDetails?id=';
+  let ticketNo;
+  if (info.selectionText==null){
+    ticketNo=findTicketNoInText(tab.url);
+  }
+  else{
+    ticketNo=findTicketNoInText(info.selectionText);
+  }
+  if (ticketNo!=undefined)
+    chrome.tabs.create({ url: scTemplate+ticketNo });
+}
+
+
+
 function copyToClipboard(text) {
   const backgroundPage = chrome.extension.getBackgroundPage()
   let textarea = document.getElementById('clipboard_object');
@@ -111,10 +120,9 @@ function copyToClipboard(text) {
 }
 
 function createItems(){
-  chrome.contextMenus.create({"id":'htmlItem',"title": 'HTML1', "contexts":['all'],
-   "onclick": createLinkOnClick});
-  chrome.contextMenus.create({'id':'markDownItem',"title": 'Markdown', "contexts":['all'],   "onclick": createLinkOnClick});
-  //chrome.contextMenus.create({"title": 'Open in SC', "contexts":['all'],    "onclick": genericOnClick});
+  chrome.contextMenus.create({"id":'htmlItem',"title": 'HTML1', "contexts":['all'], "onclick": createLinkOnClick});
+  chrome.contextMenus.create({'id':'markDownItem',"title": 'Markdown', "contexts":['all'], "onclick": createLinkOnClick});
+  chrome.contextMenus.create({"title": 'Open in SC', "contexts":['all'],    "onclick": openTicketInSC});
 }
 initialize();
 createItems();
