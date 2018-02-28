@@ -1,5 +1,5 @@
 {
-  "name": "Context Menu",
+  "name": "Open ticket Context Menu",
   "description": "Provide context menu",
   "version": "0.6",
   "permissions": ["contextMenus"],
