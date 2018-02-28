@@ -9,21 +9,29 @@ function initialize() {
 
     const proxy = chrome.extension.getBackgroundPage().document.getElementById('clipboard_object')
     var text = proxy.value;
-
+    console.log(text);
     ev.clipboardData.setData("text/plain", text);
     ev.clipboardData.setData("text/html", text);
   }, true);
 }
 
 function createHTMLLink(url,titleObject){
-  console.dir(titleObject);
-  let st='<a href=\"'+url+'\">'+titleObject.title+'</a>';
+  //console.dir(titleObject);
+  let st=`<a href="${url}">${titleObject.title}</a>`;
   if (titleObject.additionalText!=undefined){
     st=st+' '+titleObject.additionalText;
   }
-   console.log(st);
-    return st;
+  //console.log(st);
+  return st;
+}
 
+function createMarkDownLink(url,titleObject){
+  let fullTitle=titleObject.title;
+  if (titleObject.additionalText!=undefined){
+   fullTitle=fullTitle +' '+titleObject.additionalText;
+ } 
+ let st=`[${fullTitle}](${url})`;
+ return st;
 }
 
 function getLinkTitleFromTag(tab){
@@ -43,7 +51,6 @@ function getLinkTitleFromTag(tab){
      let splittedTitle=lastTitle.split(' ');
      let memberType=splittedTitle[1].toLowerCase();
      
-
      if (memberType!=undefined && memberTypes.includes(memberType)){
       console.log('member');
       additionalText=memberType;
@@ -61,7 +68,7 @@ function getLinkTitleFromTag(tab){
 
 }
 
-function createHTMLOnClick(info, tab) {
+function createLinkOnClick(info, tab) {
 
   let url=tab.url;
   let title=tab.title;
@@ -72,10 +79,19 @@ function createHTMLOnClick(info, tab) {
   }else{
     titleObject={title:info.selectionText};
   }
-  let link=createHTMLLink(url,titleObject);
+  let link;
+  switch(info.menuItemId){
+    case 'htmlItem':
+    link=createHTMLLink(url,titleObject);
+    break;
+    case 'markDownItem':
+    link=createMarkDownLink(url,titleObject);
+    break;
+  }
+  
   copyToClipboard(link);
   
-  console.dir(titleObject);
+  console.dir(info);
   //console.log('url '+url + ' selectionText -' +linkTitle+' title - '+title );
   //console.log("item " + info.menuItemId + " was clicked");
   //console.log("info: " + JSON.stringify(info));
@@ -95,9 +111,9 @@ function copyToClipboard(text) {
 }
 
 function createItems(){
-  chrome.contextMenus.create({"title": 'HTML1', "contexts":['all'],
-   "onclick": createHTMLOnClick});
-  //chrome.contextMenus.create({"title": 'Markdown', "contexts":['all'],   "onclick": genericOnClick});
+  chrome.contextMenus.create({"id":'htmlItem',"title": 'HTML1', "contexts":['all'],
+   "onclick": createLinkOnClick});
+  chrome.contextMenus.create({'id':'markDownItem',"title": 'Markdown', "contexts":['all'],   "onclick": createLinkOnClick});
   //chrome.contextMenus.create({"title": 'Open in SC', "contexts":['all'],    "onclick": genericOnClick});
 }
 initialize();
