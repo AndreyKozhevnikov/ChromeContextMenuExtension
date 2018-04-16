@@ -39,16 +39,18 @@ function getLinkTitleFromTag(tab){
   }
   //handle dx documentation
   if (tab.url.startsWith('https://documentation.devexpress.com')){
-   let lastTitle=title.split(' | ')[0];
+      let lastTitle=title.split(' | ')[0];
 
      //fit documentation links to members
      let memberTypes=['property', 'method', 'event', 'interface', 'class']
      let splittedTitle=lastTitle.split(' ');
-     let memberType=splittedTitle[1].toLowerCase();
-     
-     if (memberType!=undefined && memberTypes.includes(memberType)){
-      console.log('member');
-      additionalText=memberType;
+     if (splittedTitle.count>1){
+       let memberType=splittedTitle[1].toLowerCase();
+       
+       if (memberType!=undefined && memberTypes.includes(memberType)){
+        //console.log('member');
+        additionalText=memberType;
+      }
       title=splittedTitle[0];
     }
     else{
@@ -66,7 +68,6 @@ function createLinkOnClick(info, tab) {
   let url=tab.url;
   let title=tab.title;
   let titleObject;
-
   if (info.selectionText==null){
     titleObject=getLinkTitleFromTag(tab);
   }else{
