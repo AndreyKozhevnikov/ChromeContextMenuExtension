@@ -44,11 +44,12 @@ function getLinkTitleFromTag(tab){
      //fit documentation links to members
      let memberTypes=['property', 'method', 'event', 'interface', 'class']
      let splittedTitle=lastTitle.split(' ');
-     if (splittedTitle.count>1){
+     //console.log(splittedTitle.length);
+     if (splittedTitle.length>1){
        let memberType=splittedTitle[1].toLowerCase();
        
        if (memberType!=undefined && memberTypes.includes(memberType)){
-        //console.log('member');
+       // console.log('member');
         additionalText=memberType;
       }
       title=splittedTitle[0];
