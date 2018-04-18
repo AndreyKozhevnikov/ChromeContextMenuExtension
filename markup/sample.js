@@ -39,7 +39,7 @@ function getLinkTitleFromTag(tab){
   }
   //handle dx documentation
   if (tab.url.startsWith('https://documentation.devexpress.com')){
-      let lastTitle=title.split(' | ')[0];
+    let lastTitle=title.split(' | ')[0];
 
      //fit documentation links to members
      let memberTypes=['property', 'method', 'event', 'interface', 'class']
@@ -50,8 +50,10 @@ function getLinkTitleFromTag(tab){
        if (memberType!=undefined && memberTypes.includes(memberType)){
         //console.log('member');
         additionalText=memberType;
+        title=splittedTitle[0];
+      }else{
+        title=lastTitle;
       }
-      title=splittedTitle[0];
     }
     else{
       title=lastTitle;

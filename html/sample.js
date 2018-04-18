@@ -51,8 +51,11 @@ function getLinkTitleFromTag(tab){
        if (memberType!=undefined && memberTypes.includes(memberType)){
        // console.log('member');
         additionalText=memberType;
+        title=splittedTitle[0];
+      }else{
+        title=lastTitle;
       }
-      title=splittedTitle[0];
+     
     }
     else{
       title=lastTitle;
