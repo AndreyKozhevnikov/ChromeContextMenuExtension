@@ -99,7 +99,7 @@ function createLinkOnClick(info, tab) {
 }
 
 function findTicketNoInText(textToSearch){
-  let regex=/[TESQ]\d{4,6}/g;
+  let regex=/[TESQKA]{1,2}\d{4,6}/g;
   let results=regex.exec(textToSearch);
   console.dir(textToSearch);
   console.dir(results);
