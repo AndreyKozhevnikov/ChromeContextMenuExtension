@@ -5,7 +5,7 @@ function initialize() {
     var text = proxy.value;
     //console.log(text);
     ev.clipboardData.setData("text/plain", text);
-    ev.clipboardData.setData("text/html", text);
+    //ev.clipboardData.setData("text/html", text);
   }, true);
 }
 
@@ -136,7 +136,7 @@ function copyToClipboard(text) {
 }
 
 function createItems(){
-  chrome.contextMenus.create({"id":'scLinkItem',"title": 'Create SC link', "contexts":['all'], "onclick": createLinkOnClick});
+  chrome.contextMenus.create({"id":'scLinkItem',"title": 'xCreate SC link', "contexts":['all'], "onclick": createLinkOnClick});
  // chrome.contextMenus.create({'id':'markDownItem',"title": 'Markdown', "contexts":['all'], "onclick": createLinkOnClick});
  // chrome.contextMenus.create({"title": 'Open in SC', "contexts":['all'],    "onclick": openTicketInSC});
 }
