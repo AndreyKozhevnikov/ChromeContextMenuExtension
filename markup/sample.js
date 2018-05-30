@@ -38,7 +38,7 @@ function getLinkTitleFromTag(tab){
     }
   }
   //handle dx documentation
-  if (tab.url.startsWith('https://documentation.devexpress.com')){
+    if (tab.url.startsWith('https://documentation.devexpress.com')||tab.url.startsWith('https://docs.devexpress.com')){
     let lastTitle=title.split(' | ')[0];
 
      //fit documentation links to members
