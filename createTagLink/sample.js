@@ -3,14 +3,14 @@ function initialize() {
     ev.preventDefault();
     const proxy = chrome.extension.getBackgroundPage().document.getElementById('clipboard_object')
     var text = proxy.value;
-    //console.log(text);
+
     ev.clipboardData.setData("text/plain", text);
     //ev.clipboardData.setData("text/html", text);
   }, true);
 }
 
 function createHTMLLink(url,titleObject){
-  //console.dir(titleObject);
+ 
   let st=`<a href="${url}">${titleObject.title}</a>`;
   if (titleObject.additionalText!=undefined){
     st=st+' '+titleObject.additionalText;
@@ -50,12 +50,12 @@ function getLinkTitleFromTag(tab){
      //fit documentation links to members
      let memberTypes=['property', 'method', 'event', 'interface', 'class']
      let splittedTitle=lastTitle.split(' ');
-     //console.log(splittedTitle.length);
+     
      if (splittedTitle.length>1){
        let memberType=splittedTitle[1].toLowerCase();
        
        if (memberType!=undefined && memberTypes.includes(memberType)){
-       // console.log('member');
+       
         additionalText=memberType;
         title=splittedTitle[0];
       }else{
@@ -84,6 +84,7 @@ function createLinkOnClick(info, tab) {
     titleObject={title:info.selectionText};
   }
   let link;
+
   switch(info.menuItemId){
     case 'htmlItem':
     link=createHTMLLink(url,titleObject);
@@ -99,10 +100,10 @@ function createLinkOnClick(info, tab) {
 }
 
 function findTicketNoInText(textToSearch){
-  let regex=/[TESQKAB]{1,2}\d{4,6}/g;
+  let regex=/[TESQKAB]{1,2}\d{4,6}/gi;
   let results=regex.exec(textToSearch);
-  console.dir(textToSearch);
-  console.dir(results);
+  console.log(textToSearch);
+ console.log(results);
   if (results!=null)
     return results[0];
 }
