@@ -45,12 +45,15 @@ function getLinkTitleFromTag(tab){
      let splittedTitle=lastTitle.split(' ');
      //console.log(splittedTitle.length);
      if (splittedTitle.length>1){
-       let memberType=splittedTitle[1].toLowerCase();
+       let memberType=splittedTitle[splittedTitle.length-1].toLowerCase();
        
        if (memberType!=undefined && memberTypes.includes(memberType)){
        // console.log('member');
         additionalText=memberType;
-        title=splittedTitle[0];
+        title="";
+        for(let i=0;i<splittedTitle.length-1;i++){
+          title=title+splittedTitle[i];  
+        }
       }else{
         title=lastTitle;
       }
