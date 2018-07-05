@@ -39,7 +39,7 @@ function getLinkTitleFromTag(tab){
   }
   //handle dx documentation
   if (tab.url.startsWith('https://documentation.devexpress.com')||tab.url.startsWith('https://docs.devexpress.com')){
-      let lastTitle=title.split(' | ')[0];
+    let lastTitle=title.split(' | ')[0];
      //fit documentation links to members
      let memberTypes=['property', 'method', 'event', 'interface', 'class']
      let splittedTitle=lastTitle.split(' ');
@@ -49,24 +49,24 @@ function getLinkTitleFromTag(tab){
        
        if (memberType!=undefined && memberTypes.includes(memberType)){
        // console.log('member');
-        additionalText=memberType;
-        title="";
-        for(let i=0;i<splittedTitle.length-1;i++){
-          title=title+splittedTitle[i];  
-        }
-      }else{
-        title=lastTitle;
+       additionalText=memberType;
+       title="";
+       for(let i=0;i<splittedTitle.length-1;i++){
+        title=title+splittedTitle[i];  
       }
-     
-    }
-    else{
+    }else{
       title=lastTitle;
     }
+    
   }
-  let titleResult={
-    title, additionalText
+  else{
+    title=lastTitle;
   }
-  return titleResult;
+}
+let titleResult={
+  title, additionalText
+}
+return titleResult;
 }
 
 function createLinkOnClick(info, tab) {
@@ -92,7 +92,7 @@ function createLinkOnClick(info, tab) {
 }
 
 function findTicketNoInText(textToSearch){
-  let regex=/[TESQKA]{1,2}\d{4,6}/gi;
+  let regex=/[TESQKA]{1,2}\d{3,6}/gi;
   let results=regex.exec(textToSearch);
   console.dir(textToSearch);
   console.dir(results);
