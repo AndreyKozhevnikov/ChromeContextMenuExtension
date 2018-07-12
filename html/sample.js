@@ -11,7 +11,8 @@ function initialize() {
 
 function createHTMLLink(url,titleObject){
   //console.dir(titleObject);
-  let st=`<a href="${url}">${titleObject.title}</a>`;
+  let escapedTitle=escapeHTML(titleObject.title);
+  let st=`<a href="${url}">${escapedTitle}</a>`;
   if (titleObject.additionalText!=undefined){
     st=st+' '+titleObject.additionalText;
   }
@@ -112,8 +113,18 @@ function openTicketInSC(info,tab){
   if (ticketNo!=undefined)
     chrome.tabs.create({ url: scTemplate+ticketNo });
 }
+function escapeHTML(text) {
+  return text ? text.replace(/[&<>'"]/g, convertHTMLChar) : text;
+}
 
-
+function convertHTMLChar(c) { return charMap[c]; }
+var charMap = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  "'": '&apos;',
+  '"': '&quot;'
+};
 
 function copyToClipboard(text) {
   const backgroundPage = chrome.extension.getBackgroundPage()
