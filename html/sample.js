@@ -32,7 +32,7 @@ function getLinkTitleFromTag(tab){
   let title=tab.title;
   let additionalText;
   //remove ' | SC 3.0' from sc tickets
-  let unwantedEnds=[' | SC 3.0', ' | DevExpress Support Center'];
+  let unwantedEnds=[' | SC 3.0', ' | DevExpress Support Center',' (DevExpress.Xpo)'];
   for (let unwantedEnd of unwantedEnds){
     if (title.endsWith(unwantedEnd)){
       title=title.replace(unwantedEnd,'');
@@ -71,7 +71,8 @@ return titleResult;
 }
 
 function createLinkOnClick(info, tab) {
-
+  console.dir(tab);
+  console.dir(info);
   let url=tab.url;
   let title=tab.title;
   let titleObject;
