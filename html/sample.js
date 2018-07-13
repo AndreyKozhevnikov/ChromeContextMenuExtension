@@ -32,7 +32,7 @@ function getLinkTitleFromTag(tab){
   let title=tab.title;
   let additionalText;
   //remove ' | SC 3.0' from sc tickets
-  let unwantedEnds=[' | SC 3.0', ' | DevExpress Support Center',' (DevExpress.Xpo)'];
+  let unwantedEnds=[' | SC 3.0', ' | DevExpress Support Center'];
   for (let unwantedEnd of unwantedEnds){
     if (title.endsWith(unwantedEnd)){
       title=title.replace(unwantedEnd,'');
@@ -53,7 +53,7 @@ function getLinkTitleFromTag(tab){
        additionalText=memberType;
        title="";
        for(let i=0;i<splittedTitle.length-1;i++){
-        title=title+splittedTitle[i];  
+        title=title+' '+splittedTitle[i];  
       }
     }else{
       title=lastTitle;
