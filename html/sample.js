@@ -38,6 +38,11 @@ function getLinkTitleFromTag(tab){
   }
   //handle dx documentation
   if (tab.url.startsWith('https://documentation.devexpress.com')||tab.url.startsWith('https://docs.devexpress.com')){
+    let regex=/ \(DevExpress\..+\)$/gi;
+    let results=regex.exec(title);
+    if (results!=null){
+      title=title.replace(results[0],'');
+    }
     let lastTitle=title.split(' | ')[0];
      //fit documentation links to members
      let memberTypes=['property', 'method', 'event', 'interface', 'class']
