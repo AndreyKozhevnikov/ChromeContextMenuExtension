@@ -29,6 +29,7 @@ function createMarkDownLink(url,titleObject){
 function getLinkTitleFromTag(tab){
   let title=tab.title;
   let additionalText;
+  console.log(title);
   //remove ' | SC 3.0' from sc tickets
   let unwantedEnds=[' | SC 3.0', ' | DevExpress Support Center'];
   for (let unwantedEnd of unwantedEnds){
@@ -45,30 +46,29 @@ function getLinkTitleFromTag(tab){
     }
     let lastTitle=title.split(' | ')[0];
      //fit documentation links to members
-     let memberTypes=['property', 'method', 'event', 'interface', 'class']
-     let splittedTitle=lastTitle.split(' ');
-     if (splittedTitle.length>1){
-       let memberType=splittedTitle[splittedTitle.length-1].toLowerCase();
+      let memberTypes=['property', 'method', 'event', 'interface', 'class']
+      let splittedTitle=lastTitle.split(' ');
+      if (splittedTitle.length>1){
+        let memberType=splittedTitle[splittedTitle.length-1].toLowerCase();
        
-       if (memberType!=undefined && memberTypes.includes(memberType)){
-       additionalText=memberType;
-       title="";
-       for(let i=0;i<splittedTitle.length-1;i++){
-        title=title+' '+splittedTitle[i];  
+        if (memberType!=undefined && memberTypes.includes(memberType)){
+          additionalText=memberType;
+          title="";
+          for(let i=0;i<splittedTitle.length-1;i++){
+            title=title+' '+splittedTitle[i];  
+          }
+        }else{
+          title=lastTitle;
+        }
       }
-    }else{
-      title=lastTitle;
+      else{
+        title=lastTitle;
+      }
     }
-    
+  let titleResult={
+    title, additionalText
   }
-  else{
-    title=lastTitle;
-  }
-}
-let titleResult={
-  title, additionalText
-}
-return titleResult;
+  return titleResult;
 }
 
 function createLinkOnClick(info, tab) {
