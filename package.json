@@ -1,0 +1,23 @@
+{
+  "name": "ChromeContextMenuExtension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "createTag.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreyKozhevnikov/ChromeContextMenuExtension.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreyKozhevnikov/ChromeContextMenuExtension/issues"
+  },
+  "homepage": "https://github.com/AndreyKozhevnikov/ChromeContextMenuExtension#readme",
+  "dependencies": {
+    "mustache": "^2.3.0"
+  }
+}
