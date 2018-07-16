@@ -88,9 +88,15 @@ function findTicketNoInText(textToSearch){
 }
 
 function createJSON(){
-  let initializetxt=initialize.toString();
+  let jsonData={};
+  jsonData.initializeTxt=initialize.toString();
+  jsonData.createLinkOnClickTxt=createLinkOnClick.toString();
+  jsonData.getLinkTitleFromTagTxt=getLinkTitleFromTag.toString();
+  jsonData.copyToClipboardTxt=copyToClipboard.toString();
+  jsonData.findTicketNoInTextTxt=findTicketNoInText.toString();
 
-  console.log(initializetxt);
-  fs.appendFile('newfilename.txt',initializetxt);
+
+ //console.log(jsonData);
+  fs.writeFile('myCoreJSON.txt',JSON.stringify(jsonData));
 }
 createJSON();
