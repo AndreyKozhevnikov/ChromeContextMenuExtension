@@ -1,4 +1,4 @@
-{{initializeTxt}}
+{{{initializeTxt}}}
 
 function createLink(url,titleObject){
   let escapedTitle=escapeHTML(titleObject.title);
@@ -9,9 +9,9 @@ function createLink(url,titleObject){
   return st;
 }
 
-//{getLinkTitleFromTag}
+{{{getLinkTitleFromTagTxt}}}
 
-//{createLinkOnClick}
+{{{createLinkOnClickTxt}}}
 
 function escapeHTML(text) {
   return text ? text.replace(/[&<>'"]/g, convertHTMLChar) : text;
@@ -26,10 +26,10 @@ var charMap = {
   '"': '&quot;'
 };
 
-//{copyToClipboard}
+{{{copyToClipboardTxt}}}
 
 function createItem(){
   chrome.contextMenus.create({"id":'htmlItem',"title": 'HTML', "contexts":['all'], "onclick": createLinkOnClick});
 }
 initialize();
-createItems();
+createItem();
