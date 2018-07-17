@@ -1,5 +1,3 @@
-let fs = require('fs');
-
 function initialize() {
   document.addEventListener('copy', (ev) => {
     ev.preventDefault();
@@ -10,17 +8,13 @@ function initialize() {
   }, true);
 }
 
-function createLinkOnClick(info, tab) {
-  let url=tab.url;
-  let title=tab.title;
-  let titleObject;
-  if (info.selectionText==null){
-    titleObject=getLinkTitleFromTag(tab);
-  }else{
-    titleObject={title:info.selectionText};
+function createLink(url,titleObject){
+  let escapedTitle=escapeHTML(titleObject.title);
+  let st=`<a href="${url}">${escapedTitle}</a>`;
+  if (titleObject.additionalText!=undefined){
+    st=st+' '+titleObject.additionalText;
   }
-  let link=createLink(url,titleObject);
-  copyToClipboard(link);
+  return st;
 }
 
 function getLinkTitleFromTag(tab){
@@ -65,6 +59,32 @@ function getLinkTitleFromTag(tab){
   return titleResult;
 }
 
+function createLinkOnClick(info, tab) {
+  let url=tab.url;
+  let title=tab.title;
+  let titleObject;
+  if (info.selectionText==null){
+    titleObject=getLinkTitleFromTag(tab);
+  }else{
+    titleObject={title:info.selectionText};
+  }
+  let link=createLink(url,titleObject);
+  copyToClipboard(link);
+}
+
+function escapeHTML(text) {
+  return text ? text.replace(/[&<>'"]/g, convertHTMLChar) : text;
+}
+
+function convertHTMLChar(c) { return charMap[c]; }
+var charMap = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  "'": '&apos;',
+  '"': '&quot;'
+};
+
 function copyToClipboard(text) {
   const backgroundPage = chrome.extension.getBackgroundPage()
   let textarea = document.getElementById('clipboard_object');
@@ -78,25 +98,8 @@ function copyToClipboard(text) {
   document.execCommand("copy");
 }
 
-function findTicketNoInText(textToSearch){
-  let regex=/[TESQKAB]{1,2}\d{3,6}/gi;
-  let results=regex.exec(textToSearch);
-  console.log(textToSearch);
- console.log(results);
-  if (results!=null)
-    return results[0];
+function createItem(){
+  chrome.contextMenus.create({"id":'htmlItem',"title": 'HTML', "contexts":['all'], "onclick": createLinkOnClick});
 }
-
-function createJSON(){
-  let jsonData={};
-  jsonData.initializeTxt=initialize.toString();
-  jsonData.createLinkOnClickTxt=createLinkOnClick.toString();
-  jsonData.getLinkTitleFromTagTxt=getLinkTitleFromTag.toString();
-  jsonData.copyToClipboardTxt=copyToClipboard.toString();
-  jsonData.findTicketNoInTextTxt=findTicketNoInText.toString();
-
-
- //console.log(jsonData);
-  fs.writeFile('myCoreJSON.js',JSON.stringify(jsonData));
-}
-createJSON();
+initialize();
+createItem();

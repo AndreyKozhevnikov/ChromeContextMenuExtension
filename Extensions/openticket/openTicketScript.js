@@ -20,7 +20,18 @@ function findTicketNoInText(textToSearch){
 }
 
 
-//{copyToClipboard}
+function copyToClipboard(text) {
+  const backgroundPage = chrome.extension.getBackgroundPage()
+  let textarea = document.getElementById('clipboard_object');
+  if (!textarea) {
+    textarea = backgroundPage.document.createElement('textarea')
+    textarea.setAttribute('id', 'clipboard_object')
+    backgroundPage.document.body.appendChild(textarea)
+  }
+  textarea.value = text;
+  textarea.select();
+  document.execCommand("copy");
+}
 
 function createItems(){
   chrome.contextMenus.create({"title": 'Open in SC', "contexts":['all'],    "onclick": openTicketInSC});
