@@ -1,4 +1,4 @@
-//{initialize}
+{{{initializeTxt}}}
 
 function createLink(url,titleObject){
   let fullTitle=titleObject.title;
@@ -9,16 +9,14 @@ function createLink(url,titleObject){
  return st;
 }
 
-//{getLinkTitleFromTag}
+{{{getLinkTitleFromTagTxt}}}
 
-//{createLinkOnClick}
+{{{createLinkOnClickTxt}}}
 
+{{{copyToClipboardTxt}}}
 
-
-//{copyToClipboard}
-
-function createItems(){
+function createItem(){
   chrome.contextMenus.create({'id':'markDownItem',"title": 'Markdown', "contexts":['all'], "onclick": createLinkOnClick});
 }
 initialize();
-createItems();
+createItem();
