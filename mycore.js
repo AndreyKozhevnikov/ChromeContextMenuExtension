@@ -97,6 +97,6 @@ function createJSON(){
 
 
  //console.log(jsonData);
-  fs.writeFile('myCoreJSON.txt',JSON.stringify(jsonData));
+  fs.writeFile('myCoreJSON.js',JSON.stringify(jsonData));
 }
 createJSON();
