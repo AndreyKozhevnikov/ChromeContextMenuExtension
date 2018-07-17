@@ -1,5 +1,12 @@
-//{initialize}
+{{{initializeTxt}}}
 
+{{{getLinkTitleFromTagTxt}}}
+
+{{{createLinkOnClickTxt}}}
+
+{{{findTicketNoInTextTxt}}}
+
+{{{copyToClipboardTxt}}}
 
 function createLink(url,titleObject){
  let ticketNo=findTicketNoInText(url);
@@ -7,20 +14,8 @@ function createLink(url,titleObject){
  return res;
 }
 
-//{getLinkTitleFromTag}
-
-//{createLinkOnClick}
-
-//{findTicketNoInText}
-
-
-
-
-
-//{copyToClipboard}
-
-function createItems(){
+function createItem(){
   chrome.contextMenus.create({"id":'scLinkItem',"title": 'xCreate SC link', "contexts":['all'], "onclick": createLinkOnClick});
 }
 initialize();
-createItems();
+createItem();
