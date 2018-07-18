@@ -87,6 +87,17 @@ function findTicketNoInText(textToSearch){
     return results[0];
 }
 
+function escapeHTML(text) {
+  let charMap = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  "'": '&apos;',
+  '"': '&quot;'
+  };
+  return text ? text.replace(/[&<>'"]/g, (c)=>{return charMap[c]}) : text;
+}
+
 function createJSON(){
   let jsonData={};
   jsonData.initializeTxt=initialize.toString();
@@ -94,9 +105,8 @@ function createJSON(){
   jsonData.getLinkTitleFromTagTxt=getLinkTitleFromTag.toString();
   jsonData.copyToClipboardTxt=copyToClipboard.toString();
   jsonData.findTicketNoInTextTxt=findTicketNoInText.toString();
-
-
- //console.log(jsonData);
+  jsonData.escapeHTMLTxt=escapeHTML.toString();
+  //console.log(jsonData);
   fs.writeFile('Temp/myCoreJSON.js',JSON.stringify(jsonData));
 }
 createJSON();

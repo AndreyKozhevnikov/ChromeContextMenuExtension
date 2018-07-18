@@ -13,18 +13,7 @@ function createLink(url,titleObject){
 
 {{{createLinkOnClickTxt}}}
 
-function escapeHTML(text) {
-  return text ? text.replace(/[&<>'"]/g, convertHTMLChar) : text;
-}
-
-function convertHTMLChar(c) { return charMap[c]; }
-var charMap = {
-  '&': '&amp;',
-  '<': '&lt;',
-  '>': '&gt;',
-  "'": '&apos;',
-  '"': '&quot;'
-};
+{{{escapeHTMLTxt}}}
 
 {{{copyToClipboardTxt}}}
 

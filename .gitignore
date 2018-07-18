@@ -3,3 +3,5 @@ node_modules/
 npm-debug.log
 extension/js
 Temp/
+Extensions/html/htmlScript.js
+Extensions/createTagLink/createTagScript.js
