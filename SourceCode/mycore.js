@@ -1,4 +1,3 @@
-let fs = require('fs');
 
 function initialize() {
   document.addEventListener('copy', (ev) => {
@@ -88,6 +87,7 @@ function findTicketNoInText(textToSearch){
 }
 
 function createJSON(){
+  let fs = require('fs');
   let jsonData={};
   jsonData.initializeTxt=initialize.toString();
   jsonData.createLinkOnClickTxt=createLinkOnClick.toString();
@@ -99,4 +99,4 @@ function createJSON(){
  //console.log(jsonData);
   fs.writeFile('Temp/myCoreJSON.js',JSON.stringify(jsonData));
 }
-createJSON();
+exports.createJSONfile=createJSON;
