@@ -21,6 +21,7 @@ function getLinkTitleFromTag(tab){
   let title=tab.title;
   let additionalText;
   console.log(title);
+  console.log(tab.url);
   let unwantedEnds=[' | SC 3.0', ' | DevExpress Support Center'];
   for (let unwantedEnd of unwantedEnds){
     if (title.endsWith(unwantedEnd)){
