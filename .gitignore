@@ -5,3 +5,4 @@ extension/js
 Temp/
 Extensions/html/htmlScript.js
 Extensions/createTagLink/createTagScript.js
+Extensions/plainText/plainTextScript.js

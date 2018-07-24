@@ -1,0 +1,14 @@
+{
+  "name": "Plain text context Menu",
+  "description": "Provide context menu",
+  "version": "0.6",
+  "permissions": ["contextMenus"],
+  "background": {
+    "scripts": ["plainTextScript.js"]
+  },
+  "icons": {
+   "16": "plain.png"
+   },
+
+  "manifest_version": 2
+}
