@@ -1,4 +1,3 @@
-let fs = require('fs');
 
 function initialize() {
   document.addEventListener('copy', (ev) => {
@@ -27,6 +26,7 @@ function getLinkTitleFromTag(tab){
   let title=tab.title;
   let additionalText;
   console.log(title);
+  console.log(tab.url);
   let unwantedEnds=[' | SC 3.0', ' | DevExpress Support Center'];
   for (let unwantedEnd of unwantedEnds){
     if (title.endsWith(unwantedEnd)){
@@ -82,7 +82,7 @@ function findTicketNoInText(textToSearch){
   let regex=/[TESQKAB]{1,2}\d{3,6}/gi;
   let results=regex.exec(textToSearch);
   console.log(textToSearch);
- console.log(results);
+  console.log(results);
   if (results!=null)
     return results[0];
 }
@@ -99,6 +99,7 @@ function escapeHTML(text) {
 }
 
 function createJSON(){
+  let fs = require('fs');
   let jsonData={};
   jsonData.initializeTxt=initialize.toString();
   jsonData.createLinkOnClickTxt=createLinkOnClick.toString();
@@ -109,4 +110,5 @@ function createJSON(){
   //console.log(jsonData);
   fs.writeFile('Temp/myCoreJSON.js',JSON.stringify(jsonData));
 }
-createJSON();
+exports.createJSONfile=createJSON;
+exports.getLinkTitleFromTag=getLinkTitleFromTag;
