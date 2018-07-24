@@ -1,5 +1,5 @@
-var expect = require('chai').expect;
 
+let assert = require('assert');
 var coreModule = require('../SourceCode/mycore.js');
 
 describe('getLinkTitleFromTag', function () {
@@ -17,7 +17,8 @@ describe('getLinkTitleFromTag', function () {
     let res = coreModule.getLinkTitleFromTag(tab);
 
     // 3. ASSERT
-    expect(JSON.stringify(res)).to.be.equal(JSON.stringify(expectedTab));
+     assert.equal(JSON.stringify(res), JSON.stringify(expectedTab));
+   
   });
    it('should get Session.GetObjectByKey<ClassType> method from Session.GetObjectByKey<ClassType> Method (DevExpress.Xpo) tab title', function () {
     
@@ -33,7 +34,7 @@ describe('getLinkTitleFromTag', function () {
     let res = coreModule.getLinkTitleFromTag(tab);
 
     // 3. ASSERT
-
-    expect(JSON.stringify(res)).to.be.equal(JSON.stringify(expectedTab));
+    assert.equal(JSON.stringify(res), JSON.stringify(expectedTab));
+    
   });
 });
