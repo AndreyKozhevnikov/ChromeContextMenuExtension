@@ -33,7 +33,9 @@ $ .\build
 ```
 
 #### How to install:
-1. Chrome - Settings - More tool - Extensions - 'Load upacked'
+1. Chrome - Settings - More tool - Extensions 
+2. Enable developer mode.
+3. 'Load upacked'
 2. Select a required folder from the '\ChromeContextMenuExtension\Extensions\'
 
 #### Why so many extensions?
