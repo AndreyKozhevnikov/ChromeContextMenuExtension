@@ -4,7 +4,8 @@
   "description": "",
   "main": "createTag.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "pretest": "eslint --ignore-path .gitignore ."
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,8 @@
     "mustache": "^2.3.0"
   },
   "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-strongloop": "^2.1.0",
     "mocha": "^5.2.0"
   }
 }
