@@ -14,8 +14,9 @@ Does the same as 'Create HTML link' but the resulting link is for markdown: (tex
 ### 3. Create Tag Link
 If an opened page is a ticket, creates a link like: <sclink viewType="IDSubject" id=""/>
 
-### 4. Open ticket.
-Finds a ticket's number in a selected text and opens it in ISC.
+### 4. Open entity.
+If there is no selected text - finds a ticket's number in a page's url and opens this ticket in ISC.
+If there is a selected text - finds a user's id in the text and opens it in SupportStat. If there is no a user's Id - finds a ticket number and opens this ticket in sc.
 
 ### 5. Plain text.
 Copies a ticket's subject as plain text.
@@ -33,7 +34,7 @@ $ .\build
 
 #### How to install:
 1. Chrome - Settings - More tool - Extensions - 'Load upacked'
-2. Set a required folder from the '\ChromeContextMenuExtension\Extensions\'
+2. Select a required folder from the '\ChromeContextMenuExtension\Extensions\'
 
 #### Why so many extensions?
-If one extensions contains more than one link - Chrome creates a submenu for this extension. There is no way (I didn't found) to create several items in the main context menu from one extension.
+If one extensions contains more than one link - Chrome creates a submenu for this extension. There is no way (I didn't find) to create several items in the main context menu from one extension.
