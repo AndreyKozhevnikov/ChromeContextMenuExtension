@@ -37,4 +37,20 @@ describe('getLinkTitleFromTag', function() {
     assert.equal(JSON.stringify(res), JSON.stringify(expectedTab));
 
   });
+  it('should get ', function() {
+    // 1. ARRANGE
+    let tab = {};
+    tab.title = 'DomainComponentAttribute Class | eXpressApp Framework | DevExpress Help';
+    tab.url = 'https://documentation.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.DC.DomainComponentAttribute.class';
+    let expectedTab = {};
+    expectedTab.title = 'DomainComponent';
+    expectedTab.additionalText = 'attribute';
+
+    // 2. ACT
+    let res = coreModule.getLinkTitleFromTag(tab);
+
+    // 3. ASSERT
+    assert.equal(JSON.stringify(res), JSON.stringify(expectedTab));
+
+  });
 });

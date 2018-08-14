@@ -37,9 +37,14 @@ function getLinkTitleFromTag(tab) {
       let memberType = splittedTitle[splittedTitle.length - 1].toLowerCase();
 
       if (memberType != undefined && memberTypes.includes(memberType)) {
-        additionalText = memberType;
-        splittedTitle.splice(-1, 1);
-        title = splittedTitle.join(' ');
+        if (memberType == 'class' && splittedTitle.length == 2 && splittedTitle[0].endsWith('Attribute')) {
+          title = splittedTitle[0].replace('Attribute', '');
+          additionalText = 'attribute';
+        } else {
+          additionalText = memberType;
+          splittedTitle.splice(-1, 1);
+          title = splittedTitle.join(' ');
+        }
       } else {
         title = lastTitle;
       }
@@ -59,7 +64,7 @@ function createLinkOnClick(info, tab) {
   if (info.selectionText == null) {
     titleObject = getLinkTitleFromTag(tab);
   } else {
-    titleObject = {title: info.selectionText};
+    titleObject = { title: info.selectionText };
   }
   let link = createLink(url, titleObject);
   copyToClipboard(link);
