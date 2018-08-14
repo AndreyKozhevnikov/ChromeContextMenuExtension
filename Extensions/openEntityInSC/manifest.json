@@ -1,5 +1,5 @@
 {
-	"name": "Open ticket Context Menu",
+	"name": "Open entity in SC",
 	"description": "Provide context menu",
 	"version": "0.6",
 	"permissions": ["contextMenus"],

@@ -5,7 +5,7 @@
   "main": "createTag.js",
   "scripts": {
     "test": "mocha",
-    "pretest": "eslint --ignore-path .gitignore ."
+    "pretest": "eslint --ignore-path .eslintignore ."
   },
   "repository": {
     "type": "git",

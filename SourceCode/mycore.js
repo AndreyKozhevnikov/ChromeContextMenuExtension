@@ -84,15 +84,6 @@ function copyToClipboard(text) {
   document.execCommand('copy');
 }
 
-function findTicketNoInText(textToSearch) {
-  let regex = /[TESQKAB]{1,2}\d{3,6}/gi;
-  let results = regex.exec(textToSearch);
-  console.log(textToSearch);
-  console.log(results);
-  if (results != null)
-    return results[0];
-}
-
 function escapeHTML(text) {
   let charMap = {
     '&': '&amp;',
@@ -104,6 +95,22 @@ function escapeHTML(text) {
   return text ? text.replace(/[&<>'"]/g, (c) => { return charMap[c]; }) : text;
 }
 
+function findTicketNoInText(textToSearch) {
+  let regex = /[TESQKB]{1,2}\d{3,6}|A\d{1,4}/gi;
+  let results = regex.exec(textToSearch);
+  console.dir(textToSearch);
+  console.dir(results);
+  if (results != null)
+    return results[0];
+}
+
+function findUserIdInText(textToSearch) {
+  let regex = /A\d{5,8}/gi;
+  let results = regex.exec(textToSearch);
+  if (results != null)
+    return results[0];
+}
+
 function createJSON() {
   let fs = require('fs');
   let jsonData = {};
@@ -113,8 +120,12 @@ function createJSON() {
   jsonData.copyToClipboardTxt = copyToClipboard.toString();
   jsonData.findTicketNoInTextTxt = findTicketNoInText.toString();
   jsonData.escapeHTMLTxt = escapeHTML.toString();
+  jsonData.findTicketNoInTextTxt = findTicketNoInText.toString();
+  jsonData.findUserIdInTextTxt = findUserIdInText.toString();
   // console.log(jsonData);
   fs.writeFile('Temp/myCoreJSON.js', JSON.stringify(jsonData));
 }
 exports.createJSONfile = createJSON;
 exports.getLinkTitleFromTag = getLinkTitleFromTag;
+exports.findTicketNoInText = findTicketNoInText;
+exports.findUserIdInText = findUserIdInText;

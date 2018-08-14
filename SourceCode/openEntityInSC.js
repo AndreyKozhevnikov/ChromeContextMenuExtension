@@ -1,33 +1,32 @@
-/*global chrome */
+/*global chrome findUserIdInText findTicketNoInText */
 'use strict';
-function openTicketInSC(info, tab) {
+function openTicketInSC(ticketNo) {
   let scTemplate = 'https://isc.devexpress.com/Thread/WorkplaceDetails?id=';
-  let ticketNo;
-  if (info.selectionText == null) {
-    ticketNo = findTicketNoInText(tab.url);
-  } else {
-    ticketNo = findTicketNoInText(info.selectionText);
-  }
-  if (ticketNo != undefined)
-    chrome.tabs.create({url: scTemplate + ticketNo});
+  chrome.tabs.create({ url: scTemplate + ticketNo });
 }
-function findTicketNoInText(textToSearch) {
-  let regex = /[TESQKAB]{1,2}\d{3,6}/gi;
-  let results = regex.exec(textToSearch);
-  console.dir(textToSearch);
-  console.dir(results);
-  if (results != null)
-    return results[0];
+function openUserIdInSC(userId) {
+  let scTemplate = 'https://internal.devexpress.com/supportstat/Tools/ViewUser?customer=';
+  chrome.tabs.create({ url: scTemplate + userId });
 }
-
 /* eslint-disable */
-
-{{{copyToClipboardTxt}}}
-
+{{{findTicketNoInTextTxt}}}
+{{{findUserIdInTextTxt}}}
 /* eslint-enable */
+function openEntityInSC(info, tab) {
+  let textToSearch = info.selectionText ? info.selectionText : tab.url;
+  let userId = findUserIdInText(textToSearch);
+  if (userId != undefined) {
+    openUserIdInSC(userId);
+  } else {
+    let ticketNo = findTicketNoInText(textToSearch);
+    if (ticketNo != undefined)
+      openTicketInSC(ticketNo);
+  }
+}
 
-function createItems(){
-  chrome.contextMenus.create({title: 'Open in SC', contexts: ['all'], onclick: openTicketInSC});
+function createItems() {
+  chrome.contextMenus.create({ title: 'Open in SC', contexts: ['all'], onclick: openEntityInSC });
 }
 
 createItems();
+

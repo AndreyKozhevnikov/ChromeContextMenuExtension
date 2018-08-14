@@ -1,44 +1,44 @@
-/*global chrome */
+/*global chrome findUserIdInText findTicketNoInText */
 'use strict';
-function openTicketInSC(info, tab) {
+function openTicketInSC(ticketNo) {
   let scTemplate = 'https://isc.devexpress.com/Thread/WorkplaceDetails?id=';
-  let ticketNo;
-  if (info.selectionText == null) {
-    ticketNo = findTicketNoInText(tab.url);
-  } else {
-    ticketNo = findTicketNoInText(info.selectionText);
-  }
-  if (ticketNo != undefined)
-    chrome.tabs.create({url: scTemplate + ticketNo});
+  chrome.tabs.create({ url: scTemplate + ticketNo });
 }
+function openUserIdInSC(userId) {
+  let scTemplate = 'https://internal.devexpress.com/supportstat/Tools/ViewUser?customer=';
+  chrome.tabs.create({ url: scTemplate + userId });
+}
+/* eslint-disable */
 function findTicketNoInText(textToSearch) {
-  let regex = /[TESQKAB]{1,2}\d{3,6}/gi;
+  let regex = /[TESQKB]{1,2}\d{3,6}|A\d{1,4}/gi;
   let results = regex.exec(textToSearch);
   console.dir(textToSearch);
   console.dir(results);
   if (results != null)
     return results[0];
 }
-
-/* eslint-disable */
-
-function copyToClipboard(text) {
-  const backgroundPage = chrome.extension.getBackgroundPage();
-  let textarea = document.getElementById('clipboard_object');
-  if (!textarea) {
-    textarea = backgroundPage.document.createElement('textarea');
-    textarea.setAttribute('id', 'clipboard_object');
-    backgroundPage.document.body.appendChild(textarea);
+function findUserIdInText(textToSearch) {
+  let regex = /A\d{5,8}/gi;
+  let results = regex.exec(textToSearch);
+  if (results != null)
+    return results[0];
+}
+/* eslint-enable */
+function openEntityInSC(info, tab) {
+  let textToSearch = info.selectionText ? info.selectionText : tab.url;
+  let userId = findUserIdInText(textToSearch);
+  if (userId != undefined) {
+    openUserIdInSC(userId);
+  } else {
+    let ticketNo = findTicketNoInText(textToSearch);
+    if (ticketNo != undefined)
+      openTicketInSC(ticketNo);
   }
-  textarea.value = text;
-  textarea.select();
-  document.execCommand('copy');
 }
 
-/* eslint-enable */
-
-function createItems(){
-  chrome.contextMenus.create({title: 'Open in SC', contexts: ['all'], onclick: openTicketInSC});
+function createItems() {
+  chrome.contextMenus.create({ title: 'Open in SC', contexts: ['all'], onclick: openEntityInSC });
 }
 
 createItems();
+
