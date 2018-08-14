@@ -28,4 +28,16 @@ describe('getLinkTitleFromTag', function() {
     assert.equal(res, 'A1234567');
 
   });
+  it('should get 12123@asdfasdf.com from testtext / 12123@asdfasdf.com sometext ', function() {
+
+    // 1. ARRANGE
+    let txt = 'testtext / 12123@asdfasdf.com sometext';
+
+    // 2. ACT
+    let res = mycore.findMailInText(txt);
+
+    // 3. ASSERT
+    assert.equal(res, '12123@asdfasdf.com');
+
+  });
 });

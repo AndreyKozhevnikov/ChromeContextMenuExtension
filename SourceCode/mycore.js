@@ -111,6 +111,13 @@ function findUserIdInText(textToSearch) {
     return results[0];
 }
 
+function findMailInText(textToSearch) {
+  let regex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi;
+  let results = regex.exec(textToSearch);
+  if (results != null)
+    return results[0];
+}
+
 function createJSON() {
   let fs = require('fs');
   let jsonData = {};
@@ -122,6 +129,8 @@ function createJSON() {
   jsonData.escapeHTMLTxt = escapeHTML.toString();
   jsonData.findTicketNoInTextTxt = findTicketNoInText.toString();
   jsonData.findUserIdInTextTxt = findUserIdInText.toString();
+  jsonData.findMailInTextTxt = findMailInText.toString();
+
   // console.log(jsonData);
   fs.writeFile('Temp/myCoreJSON.js', JSON.stringify(jsonData));
 }
@@ -129,3 +138,4 @@ exports.createJSONfile = createJSON;
 exports.getLinkTitleFromTag = getLinkTitleFromTag;
 exports.findTicketNoInText = findTicketNoInText;
 exports.findUserIdInText = findUserIdInText;
+exports.findMailInText = findMailInText;
