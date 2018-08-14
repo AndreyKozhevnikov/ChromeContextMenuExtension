@@ -1,2 +1,3 @@
-let coreModule=require('./mycore.js');
+'use strict';
+let coreModule = require('./mycore.js');
 coreModule.createJSONfile();
