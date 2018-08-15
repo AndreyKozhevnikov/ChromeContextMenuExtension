@@ -3,9 +3,10 @@
 
 /* eslint-disable */
 {{{initializeTxt}}}
-/* eslint-enable */
+
 
 function createLink(url, titleObject){
+  /* eslint-enable */
   let escapedTitle = escapeHTML(titleObject.title);
   return escapedTitle;
 }

@@ -102,9 +102,9 @@ function copyToClipboard(text) {
   textarea.select();
   document.execCommand('copy');
 }
-/* eslint-enable */
 
 function createLink(url, titleObject){
+  /* eslint-enable */
   let ticketNo = findTicketNoInText(url);
   let res = `<sclink viewType="IDSubject" id="${ticketNo}"/>`;
   res = escapeHTML(res);

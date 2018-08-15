@@ -2,10 +2,11 @@
 /*global chrome initialize createLinkOnClick escapeHTML*/
 /* eslint-disable */
 {{{initializeTxt}}}
-/* eslint-enable */
+
 
 
 function createLink(url, titleObject){
+  /* eslint-enable */
   let escapedTitle = escapeHTML(titleObject.title);
   let st = `<a href="${url}">${escapedTitle}</a>`;
   if (titleObject.additionalText != undefined){
