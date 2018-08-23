@@ -10,8 +10,9 @@ function initialize() {
     ev.clipboardData.setData('text/html', text);
   }, true);
 }
-/* eslint-enable */
+
 function createLink(url, titleObject){
+  /* eslint-enable */
   let fullTitle = titleObject.title;
   if (titleObject.additionalText != undefined){
     fullTitle = fullTitle + ' ' + titleObject.additionalText;
