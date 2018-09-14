@@ -40,4 +40,16 @@ describe('getLinkTitleFromTag', function() {
     assert.equal(res, '12123@asdfasdf.com');
 
   });
+  it('should get KA18843 from https://www.devexpress.com/Support/Center/Question/Details/KA18843/how-can-i-debug-devexpress ', function() {
+
+    // 1. ARRANGE
+    let txt = 'https://www.devexpress.com/Support/Center/Question/Details/KA18843/how-can-i-debug-devexpress';
+
+    // 2. ACT
+    let res = mycore.findTicketNoInText(txt);
+
+    // 3. ASSERT
+    assert.equal(res, 'KA18843');
+
+  });
 });

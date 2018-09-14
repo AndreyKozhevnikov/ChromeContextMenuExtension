@@ -96,7 +96,7 @@ function escapeHTML(text) {
 }
 
 function findTicketNoInText(textToSearch) {
-  let regex = /[TESQKB]{1,2}\d{3,6}|A\d{1,4}/gi;
+  let regex = /[TESQKBA]{1,2}\d{3,6}|A\d{1,4}/gi;
   let results = regex.exec(textToSearch);
   console.dir(textToSearch);
   console.dir(results);
