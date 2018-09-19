@@ -1,7 +1,7 @@
 /*global chrome findUserIdInText findTicketNoInText findMailInText */
 'use strict';
 function openTicketInSC(ticketNo) {
-  let scTemplate = 'https://isc.devexpress.com/Thread/WorkplaceDetails?id=';
+  let scTemplate = 'https://isc.devexpress.com/Search/ById?id=';
   chrome.tabs.create({ url: scTemplate + ticketNo });
 }
 function openUserIdInSC(userIdOrMail) {
