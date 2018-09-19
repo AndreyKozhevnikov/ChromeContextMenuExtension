@@ -52,4 +52,16 @@ describe('getLinkTitleFromTag', function() {
     assert.equal(res, 'KA18843');
 
   });
+  it('should get BC4447 from testtextBC4447testaa ', function() {
+
+    // 1. ARRANGE
+    let txt = 'testtextBC4447testaa';
+
+    // 2. ACT
+    let res = mycore.findTicketNoInText(txt);
+
+    // 3. ASSERT
+    assert.equal(res, 'BC4447');
+
+  });
 });
