@@ -1,7 +1,8 @@
 /*global chrome findUserIdInText findTicketNoInText findMailInText */
 'use strict';
 function openTicketInSC(ticketNo) {
-  let scTemplate = 'https://isc.devexpress.com/Thread/WorkplaceDetails?id=';
+  // let scTemplate = 'https://isc.devexpress.com/Thread/WorkplaceDetails?id=';
+  let scTemplate = 'https://isc.devexpress.com/Search/ById?id=';
   chrome.tabs.create({ url: scTemplate + ticketNo });
 }
 function openUserIdInSC(userIdOrMail) {
@@ -10,7 +11,7 @@ function openUserIdInSC(userIdOrMail) {
 }
 /* eslint-disable */
 function findTicketNoInText(textToSearch) {
-  let regex = /[TESQKBA]{1,2}\d{3,6}|A\d{1,4}/gi;
+  let regex = /[TESQKBAC]{1,2}\d{3,6}|A\d{1,4}/gi;
   let results = regex.exec(textToSearch);
   console.dir(textToSearch);
   console.dir(results);

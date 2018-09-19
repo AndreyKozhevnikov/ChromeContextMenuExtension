@@ -10,7 +10,7 @@ function openUserIdInSC(userIdOrMail) {
 }
 /* eslint-disable */
 function findTicketNoInText(textToSearch) {
-  let regex = /[TESQKBA]{1,2}\d{3,6}|A\d{1,4}/gi;
+  let regex = /[TESQKBAC]{1,2}\d{3,6}|A\d{1,4}/gi;
   let results = regex.exec(textToSearch);
   console.dir(textToSearch);
   console.dir(results);
