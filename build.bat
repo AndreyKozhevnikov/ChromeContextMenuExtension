@@ -5,4 +5,5 @@ mustache Temp\myCoreJSON.json SourceCode\createTag.js > Extensions\createTagLink
 mustache Temp\myCoreJSON.json SourceCode\openEntityInSC.js > Extensions\openEntityInSC\openEntityInSCscript.js &&^
 mustache Temp\myCoreJSON.json SourceCode\openEntityInAD.js > Extensions\openEntityInAD\openEntityInADscript.js &&^
 mustache Temp\myCoreJSON.json SourceCode\plainText.js > Extensions\plainText\plainTextScript.js &&^
+mustache Temp\myCoreJSON.json SourceCode\createTextBox.js > Extensions\createTextBox\createTextBoxScript.js &&^
 
