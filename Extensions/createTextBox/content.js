@@ -6,6 +6,7 @@ function createTextBox(domContent) {
   // var posY = e.clientY;
   //console.log(posX + ' - '+ posY);
   let elem = document.body;
+  //let elem = document.getElementsByTagName('div')[0];
   let textBox = document.createElement('input');
   textBox.classList.add('myTextBox');
   elem.insertBefore(textBox,elem.firstChild);
@@ -23,10 +24,5 @@ function addStyle(css) {
   style.innerHTML = css;
   head.appendChild(style);
 }
-function myClickHandler(e){
-  console.dir(e);
-}
-addStyle('.myTextBox' + ' {visibility: visible; position: absolute; z-index:10; background-color: azure;}');
+addStyle('.myTextBox' + ' {visibility: visible; position: relative; z-index:10; background-color: azure;}');
 createTextBox();
-console.dir(this);
-document.addEventListener('click',myClickHandler);
