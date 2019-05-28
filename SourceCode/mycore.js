@@ -105,7 +105,7 @@ function findTicketNoInText(textToSearch) {
 }
 
 function findUserIdInText(textToSearch) {
-  let regex = /A\d{5,8}/gi;
+  let regex = /[^K](A\d{5,8})/gi;
   let results = regex.exec(textToSearch);
   if (results != null)
     return results[0];
