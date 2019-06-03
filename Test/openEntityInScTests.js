@@ -65,3 +65,15 @@ describe('getLinkTitleFromTag', function() {
 
   });
 });
+
+describe('getUserIdFromText', function() {
+  it('should not find userId from KA18785 ', function() {
+
+    // 1. ARRANGE
+    let txt0 = 'https://www.devexpress.com/Support/Center/Question/Details/KA18785/known-security-system-module-scenarios-unsupported-out-of-the-box';
+    // 2. ACT
+    let res0 = mycore.findUserIdInText(txt0);
+    // 3. ASSERT
+    assert.equal(res0, null);
+  });
+});
