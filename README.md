@@ -11,9 +11,6 @@ Creates HTML link to a current page from a selected text (if any) or from a page
 ### 2. Create Markdown link.
 Does the same as 'Create HTML link' but the resulting link is for markdown: (text)[link]
 
-### 3. Create Tag Link
-If an opened page is a ticket, creates a link like: <sclink viewType="IDSubject" id=""/>
-
 ### 4. Open entity.
 If there is no selected text - finds a ticket's number in a page's url and opens this ticket in ISC.
 If there is a selected text - finds a user's id in the text and opens it in SupportStat. If there is no a user's Id - finds a ticket number and opens this ticket in sc.
