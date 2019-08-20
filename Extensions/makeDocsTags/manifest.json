@@ -1,0 +1,18 @@
+{
+  "name": "Tags for make docs great",
+  "description": "Tags for make docs great",
+  "version": "0.1",
+  "permissions": ["contextMenus","activeTab"],
+  "background": {
+    "persistent": false,
+    "scripts": ["makeDocsTags.js"]
+    },
+  "browser_action": {
+    "default_title": "MakeDocsTags"
+  },
+  "icons": {
+   "16": "dc.jpg"
+   },
+   
+  "manifest_version": 2
+}
