@@ -16,7 +16,7 @@ describe('getLinkTitleFromTag', function() {
     assert.equal(res1, 'A2944');
 
   });
-  it('should get A1234567 from testtext / A1234567 sometext ', function() {
+  it('should get userid A1234567 from testtext / A1234567 sometext ', function() {
 
     // 1. ARRANGE
     let txt = 'testtext / A1234567 sometext';
@@ -75,5 +75,36 @@ describe('getUserIdFromText', function() {
     let res0 = mycore.findUserIdInText(txt0);
     // 3. ASSERT
     assert.equal(res0, null);
+  });
+
+  it('should not find ticketId from A1203557 ', function() {
+
+    // 1. ARRANGE
+    let txt0 = 'test text A1203557 txt';
+    // 2. ACT
+    let res0 = mycore.findTicketNoInText(txt0);
+    // 3. ASSERT
+    assert.equal(res0, null);
+  });
+
+  it('should  find user  from A1203557 ', function() {
+
+    // 1. ARRANGE
+    let txt0 = 'test text A1203557 txt';
+    // 2. ACT
+    let res0 = mycore.findUserIdInText(txt0);
+    // 3. ASSERT
+    assert.equal(res0, 'A1203557');
+
+  });
+  it('should  find user  from A1203557 ', function() {
+
+    // 1. ARRANGE
+    let txt0 = 'A1203557';
+    // 2. ACT
+    let res0 = mycore.findUserIdInText(txt0);
+    // 3. ASSERT
+    assert.equal(res0, 'A1203557');
+
   });
 });

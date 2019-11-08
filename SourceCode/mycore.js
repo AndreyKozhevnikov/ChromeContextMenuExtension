@@ -96,19 +96,23 @@ function escapeHTML(text) {
 }
 
 function findTicketNoInText(textToSearch) {
-  let regex = /[TESQKBAC]{1,2}\d{3,6}|A\d{1,4}/gi;
+  let regex = /[TESQKBC]{1,2}A?\d{3,6}/gi;
+  let regexShortA = /(A\d{1,4})\D/gi;
   let results = regex.exec(textToSearch);
+  let resultsShortA = regexShortA.exec(textToSearch);
   console.dir(textToSearch);
   console.dir(results);
   if (results != null)
     return results[0];
+  if (resultsShortA != null)
+    return resultsShortA[1];
 }
 
 function findUserIdInText(textToSearch) {
-  let regex = /[^K](A\d{5,8})/gi;
+  let regex = /([^K]|^)(A\d{5,8})/gi;
   let results = regex.exec(textToSearch);
   if (results != null)
-    return results[1];
+    return results[results.length - 1];
 }
 
 function findMailInText(textToSearch) {
