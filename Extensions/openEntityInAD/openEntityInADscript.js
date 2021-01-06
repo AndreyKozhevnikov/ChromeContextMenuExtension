@@ -28,7 +28,7 @@ function findUserIdInText(textToSearch) {
     return results[results.length - 1];
 }
 function findMailInText(textToSearch) {
-  let regex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi;
+  let regex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi;
   let results = regex.exec(textToSearch);
   if (results != null)
     return results[0];

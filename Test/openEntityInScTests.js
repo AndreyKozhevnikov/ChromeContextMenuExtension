@@ -40,6 +40,18 @@ describe('getLinkTitleFromTag', function() {
     assert.equal(res, '12123@asdfasdf.com');
 
   });
+  it('should get manoj@mealcast.io from is manoj@mealcast.io. ', function() {
+
+    // 1. ARRANGE
+    let txt = 'is manoj@mealcast.io.';
+
+    // 2. ACT
+    let res = mycore.findMailInText(txt);
+
+    // 3. ASSERT
+    assert.equal(res, 'manoj@mealcast.io');
+
+  });
   it('should get KA18843 from https://www.devexpress.com/Support/Center/Question/Details/KA18843/how-can-i-debug-devexpress ', function() {
 
     // 1. ARRANGE
