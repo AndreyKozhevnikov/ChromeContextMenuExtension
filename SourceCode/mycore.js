@@ -136,7 +136,7 @@ function createJSON() {
   jsonData.findMailInTextTxt = findMailInText.toString();
 
   // console.log(jsonData);
-  fs.writeFile('Temp/myCoreJSON.json', JSON.stringify(jsonData));
+  fs.writeFile('Temp/myCoreJSON.json', JSON.stringify(jsonData), null, () => {});
 }
 exports.createJSONfile = createJSON;
 exports.getLinkTitleFromTag = getLinkTitleFromTag;
