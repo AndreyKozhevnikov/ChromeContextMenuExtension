@@ -14,10 +14,17 @@ describe('getLinkTitleFromTag', function() {
     // 3. ASSERT
     assert.equal(res0, 'T663889');
     assert.equal(res1, 'A2944');
-
+  });
+  it('should get T1000424 from T1000424 - Saving the ResourceResources_EventEvents.Events property is prohibited by security rules.', function() {
+    // 1. ARRANGE
+    let txt0 =
+      'T1000424 - Saving the ResourceResources_EventEvents.Events property is prohibited by security rules.';
+    // 2. ACT
+    let res0 = mycore.findTicketNoInText(txt0);
+    // 3. ASSERT
+    assert.equal(res0, 'T1000424');
   });
   it('should get userid A1234567 from testtext / A1234567 sometext ', function() {
-
     // 1. ARRANGE
     let txt = 'testtext / A1234567 sometext';
 
