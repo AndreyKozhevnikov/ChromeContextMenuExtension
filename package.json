@@ -1,5 +1,5 @@
 {
-  "name": "ChromeContextMenuExtension",
+  "name": "chromecontextmenuextension",
   "version": "1.0.0",
   "description": "",
   "main": "createTag.js",
