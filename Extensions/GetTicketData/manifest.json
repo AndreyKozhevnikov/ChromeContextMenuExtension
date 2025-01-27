@@ -1,0 +1,19 @@
+{
+  "name": "getTicketData",
+  "description": "get ticket data for analyze",
+  "version": "0.1",
+  "permissions": ["contextMenus","tabs","activeTab"],
+  "background": {
+    "persistent": false,
+    "scripts": ["getTicketData.js"]
+  },
+  "content_scripts": [{
+    "matches": ["*://*.devexpress.com/*"],
+    "js": ["content123.js"]
+  }],
+  "browser_action": {
+    "default_title": "get ticket data for analyze"
+  },
+
+  "manifest_version": 2
+}
