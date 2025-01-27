@@ -1,14 +1,11 @@
 {
   "name": "HTML context Menu",
+  "version": "1.0",
+  "manifest_version": 3,
   "description": "Provide context menu",
-  "version": "0.6",
-  "permissions": ["contextMenus"],
   "background": {
-    "scripts": ["htmlScript.js"]
+    "service_worker": "background.js"
   },
-  "icons": {
-   "16": "html.png"
-   },
-
-  "manifest_version": 2
+  "action": {},
+  "permissions": ["offscreen", "clipboardWrite","contextMenus"]
 }
