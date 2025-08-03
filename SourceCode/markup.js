@@ -1,7 +1,7 @@
 /*eslint no-unused-vars: 1*/
 /*global chrome initialize createLinkOnClick*/
 /* eslint-disable */
-{{{initializeTxt}}}
+
 
 function createLink(url, titleObject){
   /* eslint-enable */
@@ -18,9 +18,16 @@ function createLink(url, titleObject){
 {{{createLinkOnClickTxt}}}
 
 {{{copyToClipboardTxt}}}
+
+{{{addToClipboard}}}
+
 /* eslint-enable */
-function createItem(){
-  chrome.contextMenus.create({id: 'markDownItem', title: 'Markdown', contexts: ['all'], onclick: createLinkOnClick});
+function createItems() {
+  chrome.contextMenus.create({ id: 'markupItem', title: 'markup2', contexts: ['all'] });
+  chrome.contextMenus.onClicked.addListener(function(i, t) {
+    let link = createLinkOnClick(i, t);
+    addToClipboard(link);
+  });
 }
-initialize();
+
 createItem();

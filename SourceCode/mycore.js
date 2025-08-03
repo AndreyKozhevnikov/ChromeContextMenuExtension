@@ -122,6 +122,23 @@ function findMailInText(textToSearch) {
     return results[0];
 }
 
+async function addToClipboard(value) {
+  await chrome.offscreen.createDocument({
+    url: 'offscreen.html',
+    reasons: [chrome.offscreen.Reason.CLIPBOARD],
+    justification: 'Write text to the clipboard.'
+  });
+
+  // Now that we have an offscreen document, we can dispatch the
+  // message.
+  chrome.runtime.sendMessage({
+    type: 'copy-data-to-clipboard',
+    target: 'offscreen-doc',
+    data: value
+  });
+}
+
+
 function createJSON() {
   let fs = require('fs');
   let jsonData = {};
@@ -131,6 +148,7 @@ function createJSON() {
   jsonData.copyToClipboardTxt = copyToClipboard.toString();
   jsonData.findTicketNoInTextTxt = findTicketNoInText.toString();
   jsonData.escapeHTMLTxt = escapeHTML.toString();
+  jsonData.addToClipboard = addToClipboard.toString();
   jsonData.findTicketNoInTextTxt = findTicketNoInText.toString();
   jsonData.findUserIdInTextTxt = findUserIdInText.toString();
   jsonData.findMailInTextTxt = findMailInText.toString();
