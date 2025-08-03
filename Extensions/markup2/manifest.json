@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Markup2 Context Menu Extension",
+  "version": "1.0",
+  "description": "Adds a custom item to the browser context menu.",
+  "permissions": ["contextMenus", "activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "markup.png",
+    "48": "markup.png",
+    "128": "markup.png"
+  }
+}
